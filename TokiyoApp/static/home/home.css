@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&display=swap');
+
+ body {
+    font-family: 'Comic Neue', cursive;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+.coverPic {
+    background-image: url("../../static/home/luffy_wallpaper1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.coverPicGradient {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    height: 100%;
+    background-color: rgb(3, 16, 19, .5);
+    padding: 20px 20px 30px 20px;
+}
+
+.viewProducts {
+    font-weight: bold;
+    font-size: larger;
+    text-decoration: none;
+    background-color: rgb(3, 16, 19, 1);
+    color:aliceblue;
+    padding: 2%;
+    border-radius: 15px;
+    border: 0;
+    margin-top: 200px;
+    transition-delay: .1s;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+}
+
+.viewProducts:hover{
+    transform: translateY(-10px);
+    font-weight: bold;
+    font-size: larger;
+    border: 0;
+    text-decoration: none;
+    color: red;
+}
+
+.space1{
+    background-color: rgb(3, 16, 19, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.qoute1{
+    color: aliceblue;
+}
+
+.midCoverPic{
+    background-image: url("../../static/home/luffy_wallpaper3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 220vh;
+}
+.midCoverPicGradient{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    overflow: auto;
+    height: 100%;
+    background-color: rgb(3, 16, 19, .5);
+    padding: 20px 20px 30px 20px;
+}
+
+.category {
+    margin: 10px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.catName {
+    margin: 10px 0; /* Adjust the margin as needed for spacing */
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+.category:hover{
+    background-color: rgb(255,0,0,.7);
+    backdrop-filter: blur(5px); 
+}
+
+.left_img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.right_img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.decoImg{
+    padding: 20px;
+    opacity: 1;
+    background-position: center;
+    height: 90vh;
+    width: 60vh;
+    color: black;
+    border-radius: 30px;
+    transition-delay: .1s;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+}
+
+.decoImg:hover{
+    transform: scale(.95);
+}
+
+/*-----------*/

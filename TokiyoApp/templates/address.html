@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'address/address.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+
+<body>
+    <div class="navbar_for_address">
+        {% include 'navbar/navbarLogout.html' %}
+    </div>
+    <div class="content">
+        <form class="containerAddress" method="POST" action="{% url 'updateAddress' %}">
+            {% csrf_token %}
+            <div class="leftContentDisplay">
+                <div class="displayTags"><label for="{{ form.cutomerHouseNo.id_for_label }}">House No</label></div>
+                <div class="displayTags"><label for="{{ form.cutomerAddressLine1.id_for_label }}">Address Line 1</label></div>
+                <div class="displayTags"><label for="{{ form.cutomerAddressLine2.id_for_label }}">Address Line 2</label></div>
+                <div class="displayTags"><label for="{{ form.customerCity.id_for_label }}">City</label></div>
+                <div class="displayTags"><label for="{{ form.customerState.id_for_label }}">State</label></div>
+                <div class="displayTags"><label for="{{ form.customerPinCode.id_for_label }}">Pin Code</label></div>
+                <div class="displayTags"><label for="{{ form.customerDeliveryNumber.id_for_label }}">Delivery No</label></div>
+            </div>
+            <div class="rightDetaisDisplay">
+                <input type="hidden" value="{{ customerId }}" name="customerId" id="{{ form.customerId.id }}">
+                <input class="inputTags" type="text" value="{{ customer.cutomerHouseNo }}" name="cutomerHouseNo"id="{{ form.cutomerHouseNo.id }}">
+                <input class="inputTags" type="text" value="{{ customer.cutomerAddressLine1 }}" name="cutomerAddressLine1"id="{{ form.cutomerAddressLine1.id }}">
+                <input class="inputTags" type="text" value="{{ customer.cutomerAddressLine2 }}" name="cutomerAddressLine2" id="{{ form.cutomerAddressLine2.id }}">
+                <input class="inputTags" type="text" value="{{ customer.customerCity }}" name="customerCity" id="{{ form.customerCity.id }}">
+                <input class="inputTags" type="text" value="{{ customer.customerState }}" name="customerState"id="{{ form.customerState.id }}">
+                <input class="inputTags" type="number" value="{{ customer.customerPinCode }}" name="customerPinCode" id="{{ form.customerPinCode.id }}">
+                <input class="inputTags" type="tel" value="{{ customer.customerDeliveryNumber }}" name="customerDeliveryNumber" id="{{ form.customerDeliveryNumber.id }}">
+            </div>
+            <div class="btn">
+                <button type="submit" class="register" name="buttonClickSaveChanges">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

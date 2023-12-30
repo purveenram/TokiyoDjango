@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/home.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+<body>
+    <div class="navbar_for_home">
+        {% if user %}
+            {% include 'navbar/navbarLogout.html' %}
+        {% else %}
+            {% include 'navbar/navbarLogin.html' %}
+        {% endif %}
+    </div>
+    <div class="coverPic">
+        <div class="coverPicGradient">
+            <a class="viewProducts" href="{% url 'category' category=0 %}">View Products</a>
+        </div>
+    </div>
+    <div class="space1">
+        <h1 class="qoute1">Get the Best!</h1>
+    </div>
+    <div class="midCoverPic">
+        <div class="midCoverPicGradient">
+
+            <div class="left_img">
+                <a class="category" href="{% url 'category' category=1 %}" value="1"><img class="decoImg" src="{% static 'home/deco1.jpg' %}" alt="deco1"><span class="catName">KATANA</span></a>
+                <a class="category" href="{% url 'category' category=2 %}" value="2"><img class="decoImg" src="{% static 'home/deco2.jpeg' %}" alt="deco2"><span class="catName">ACTION FIGURES</span></a>
+            </div>
+            <div class="right_img">
+                <a class="category" href="{% url 'category' category=3 %}" value="3"><img class="decoImg" src="{% static 'home/deco3.jpeg' %}" alt="deco3"><span class="catName">ACCESSORIES</span></a>
+                <a class="category" href="{% url 'category' category=4 %}" value="4"><img class="decoImg" src="{% static 'home/deco4.jpeg' %}" alt="deco4"><span class="catName">POSTERS</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        {% include 'footerPage.html' %}
+    </div>
+</body>
+</html>

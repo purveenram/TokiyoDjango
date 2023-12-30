@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;1,300&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+
+body{
+  margin: 0;
+  font-family: 'Comic Neue', cursive;
+  background-image: url('background1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.content{
+  width: 35%;
+  background-color: rgb(3, 16, 19, .8);
+  padding-top:20px;
+  margin: 3% auto auto auto;
+  padding-bottom:3%;
+  border-radius: 20px 20px 20px 20px;
+}
+.leftContentDisplay{
+  float: left;
+  width: 50%;
+}
+.rightDetaisDisplay{
+  float: right;
+  width: 50%;
+}
+
+.displayTags{
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 28%;
+  color:aliceblue;
+}
+
+.inputTags{
+  margin-top: 10px;
+  margin-right: 0%;
+  padding: 5px;
+  width: 200px;
+  height: 30px;
+  border: 0px;
+  border-radius: 50px;
+  text-align: center;
+}
+.inputTags:focus{
+  height: 30px;
+  outline:none;
+}
+
+.btn{
+  padding-left: 50%;
+  transform: translatex(-75px);
+}
+
+.register {
+  height: 38px;
+  width: 150px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: medium;
+  border: 0;
+  background-color: rgb(3, 16, 19, 1);
+  color:aliceblue;
+  border-radius: 19px;
+  margin-top: 20px;
+  transition-delay: .1s;
+  transition-duration: .3s;
+  transition-timing-function: ease;
+}
+
+.register:hover{
+  transform: translateY(-3px);
+  text-decoration: none;
+  font-size: medium;
+  border: 0;
+  color: red;
+}
+/* --------------- */
+
+.password-toggle {
+  position: relative;
+}
+
+.password-toggle .toggle-password {
+  position: absolute;
+  top: 60%;
+  right: 33px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

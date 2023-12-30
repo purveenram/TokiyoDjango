@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&display=swap');
+
+body{
+    font-family: 'Comic Neue', cursive;
+    background-image: url('backgroundImg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container{
+    height: 600px;
+    width: 210px;
+    background-color: rgb(3, 16, 19, .6);
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px 20px 30px 20px;
+    border-radius: 20px;
+}
+
+.logo{
+    text-align: center;
+}
+.logoImg{
+    height: 70px;
+    width: 70px;
+}
+
+.displayTags{
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    color:aliceblue;
+}
+
+.inputTags{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.btn{
+    text-align: center;
+    margin-top: 20px;
+}
+
+button{
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    background-color: rgb(3, 16, 19, 1);
+    color:aliceblue;
+    font-size: medium;
+    border: 0;
+    height: 38px;
+    width: 150px;
+    border-radius: 19px;
+}
+button:hover {
+    color: red;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    font-size: medium;
+}
+
+input{
+    padding: 0px;
+    height: 26px;
+    width: 210px;
+    border-radius: 13px;
+    border: 0;
+    text-align: center;
+}
+input:focus{
+    outline:none;
+}
+
+select.genderOption {
+    height: 26px;
+    width: 200px;
+    border-radius: 13px;
+    border: 0;
+    text-align: center;
+}
+select.genderOption:focus{
+    outline:none;
+}
+.homeDiv{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.home{
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255,.8);
+    text-decoration: none;
+    color:black;
+    font-size: medium;
+    margin-left:47%;
+    border: 0;
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+.home:hover {
+    background-color: black;
+    color: red;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    font-size: medium;
+}
+

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/registrationCustomer.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+<body>
+    <form class="container" method="POST" action="{% url 'addCustomer' %}">
+        {% csrf_token %}
+        <div class="logo"><a href="{% url 'home' %}"><img class="logoImg" src="{% static 'login/logoWhite.png' %}" alt="Logo"></a></div>
+
+        <div class="displayTags"><label for="{{ form.customerName.id_for_id }}">Name</label></div>
+        <div class="inputTags"><input type="text" name="customerName" id="{{ form.customerName.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerEmail.id_for_id }}">Email Id</label></div>
+        <div class="inputTags"><input type="email" name="customerEmail" id="{{ form.customerEmail.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerPhone.id_for_id }}">Phone No</label></div>
+        <div class="inputTags"><input type="tel" name="customerPhone" id="{{ form.customerPhone.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerPassword.id_for_id }}">Password</label></div>
+        <div class="inputTags"><input type="password" name="customerPassword" id="{{ form.customerPassword.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerDateOfBirth.id_for_id }}">Date Of Birth</label></div>
+        <div class="inputTags"><input type="date" name="customerDateOfBirth" id="{{ form.customerDateOfBirth.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerGender.id_for_id }}">Gender</label></div>
+        <div class="inputTags">
+            <select class="genderOption" name="customerGender" id="{{ form.customerGender.id_for_id }}">
+                <option value="" selected disabled>Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+        
+        <div class="btn">
+            <button type="submit" class="Register" name="buttonClickRegister" >Register</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+<body>
+    <div class="space2">
+        <h1 class="qoute2">About Us</h1>
+    </div>
+    <div class="contactdetails">
+        <div class="address">
+            No.6,<br>
+            Dubai Kuruku Sandhu,<br>
+            Dubai Main Road,<br>
+            Dubai.
+        </div>
+        <div class="contact">
+            Email   : tokiyo@gmail.com <br>
+            Contact : (91) +9677271036
+        </div>
+    </div>
+    <div class="space3">
+        <div class="qoute3">© 2023, Tokiyo. </div>
+    </div>
+</body>
+<style>
+.space2{
+    background-color: rgb(3, 16, 19, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.qoute2{
+    color: aliceblue;
+}
+.contactdetails{
+    background-color: rgb(3, 16, 19, 1);
+    display: flex;
+    overflow: auto;
+}
+.address{
+    margin-left: 25%;
+    float: left;
+    color: aliceblue;
+    background-color: rgb(3, 16, 19, 1);
+}
+.contact{
+    margin-left: 25%;
+    color: aliceblue;
+    background-color: rgb(3, 16, 19, 1);
+}
+
+.space3{
+    background-color: rgb(3, 16, 19, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 20px;
+}
+
+.qoute3{
+    color: aliceblue;
+}
+
+</style>
+</html>

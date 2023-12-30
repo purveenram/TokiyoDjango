@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static '../static/navbar/navbar.css' %}">
+    <title>Tokiyo</title>
+</head>
+
+<body>
+    <div class="containerNav">
+        <a class="logo" href="{% url 'home' %}"></a>
+        <form id="search_form" method="post" action="{% url 'searchInput' %}">
+            {% csrf_token %}
+            <div class="searchdropdown">
+                <div class="searchBar"><input type="text" id="search_here" placeholder="Search..." name="search"></div>
+                <div class="suggestionbox" id="box">
+                    {% for item in object_list %}
+                    <a class="suggestion" href="{% url 'product' prod=item.id %}" value="{{ item.id }}"></a>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="searchImg"></button>
+        </form>
+
+        <div class="dropdown">
+            <button class="dropbtn" id="logoutwork"></button>
+            <div class="dropdown-content">
+                <a href="{% url 'profile' %}">Personal Details</a>
+                <a href="{% url 'address' %}">Delivery Address</a>
+                <a href="{% url 'viewOrders' %}">Orders</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+        <a class="cart" href="{% url 'cart' %}"></a>
+    </div>
+</body>
+<script>
+    const data = '{{ qs_json|safe }}';
+    const rdata = JSON.parse(data);
+    const input = document.getElementById('search_here');
+    let filterArr = [];
+    input.addEventListener('input', (e) => {
+        box.innerHTML = "";
+        const inputValue = e.target.value.toLowerCase();
+        filterArr = rdata.filter(product => product.productName.toLowerCase().includes(inputValue));
+        if (filterArr.length > 0) {
+            filterArr.forEach(item => {
+                const suggestionLink = document.createElement('a');
+                suggestionLink.className = 'suggestion';
+                const itemId = rdata.find(product => product.productName === item.productName)?.id;
+                if (itemId !== undefined) {
+                    const productUrl = '{% url "product" prod=0 %}'.replace('0', itemId);
+                    suggestionLink.href = productUrl;
+                    suggestionLink.textContent = item.productName;
+                    suggestionLink.addEventListener('click', () => navigateToProduct(itemId));
+                    box.appendChild(suggestionLink);
+                }
+            });
+        } else {
+            box.innerHTML = "<b class='no-results'>No Results found...</b>";
+        }
+    });
+    // Event listener to close suggestion box when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !box.contains(e.target)) {
+            box.innerHTML = "";
+        }
+    });
+    function navigateToProduct(itemId) {
+        window.location.href = '{% url "product" prod=0 %}'.replace('0', itemId);
+    }
+</script>
+
+</html>

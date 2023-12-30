@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/registrationAddress.css' %}">
+    <link rel="stylesheet" href="../static/registration/registeratonAddress.css">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+<body>
+    <form class="container" method="POST" action="{% url 'addAddress' %}">
+        {% csrf_token %}
+        <div class="logo"><a href="{% url 'home' %}"><img class="logoImg" src="{% static 'login/logoWhite.png' %}" alt="Logo"></a></div>
+
+        <input type="hidden" name="customerId" id="{{ form.cutomerId.id_for_id }}" value="{{ userId }}">
+
+        <div class="displayTags"><label for="{{ form.cutomerHouseNo.id_for_id }}">House No</label></div>
+        <div class="inputTags"><input type="text" name="cutomerHouseNo" id="{{ form.cutomerHouseNo.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.cutomerAddressLine1.id_for_id }}">Address Line 1</label></div>
+        <div class="inputTags"><input type="text" name="cutomerAddressLine1" id="{{ form.cutomerAddressLine1.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.cutomerAddressLine2.id_for_id }}">Address Line 2</label></div>
+        <div class="inputTags"><input type="text" name="cutomerAddressLine2" id="{{ form.cutomerAddressLine2.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerCity.id_for_id }}">City</label></div>
+        <div class="inputTags"><input type="text" name="customerCity" id="{{ form.customerCity.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerState.id_for_id }}">State</label></div>
+        <div class="inputTags"><input type="text" name="customerState" id="{{ form.customerState.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerPinCode.id_for_id }}">Pin Code</label></div>
+        <div class="inputTags"><input type="number" name="customerPinCode" id="{{ form.customerPinCode.id_for_id }}"></div>
+
+        <div class="displayTags"><label for="{{ form.customerDeliveryNumber.id_for_id }}">Delivery Number</label></div>
+        <div class="inputTags"><input type="tel" name="customerDeliveryNumber" id="{{ form.customerDeliveryNumber.id_for_id }}"></div>
+
+        <div class="btn">
+            <button type="submit" class="Register" name="buttonClickRegister" >Add Address</button>
+        </div>
+    </form>
+    <div class="homeDiv"></div>
+    {% if forSkip %}
+        <a class="home" href="{% url 'home' %}">Skip</a>
+    {% else %}
+        <a class="home" href="{% url 'login' %}">Skip</a>
+    {% endif %}
+    </div>
+</body>
+</html>

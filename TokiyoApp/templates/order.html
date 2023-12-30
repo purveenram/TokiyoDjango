@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'order/order.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+    <script>
+        function toggleOrderDetails(orderId) {
+            var orderDetails = document.getElementById(`order-details-${orderId}`);
+            orderDetails.style.display = orderDetails.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="background">
+        <div class="navbar_for_home">
+            {% include 'navbar/navbarLogout.html' %}
+        </div>
+        {% if ordersList %}
+        <div class="containerOrder">
+            {% for order in ordersList %}
+            <div class="order-header" tabindex="0" onclick="toggleOrderDetails('{{ order.tokiyoOrderId }}')" onblur="this.classList.remove('focused')">
+                <div class="tokiyoOrderId">Order Id : #{{ order.tokiyoOrderId }}</div>
+                {% if order.orderStatusInOrder == 'Y' %}
+                <div class="orderstatus1"></div><span class="status">Delivered <span class="deliveryday">(on {{ order.orderDeliveredDate }})</span></span>
+                {% elif order.orderStatusInOrder == 'N' %}
+                <div class="orderstatus2"></div><span class="status"><a class="cancel" href="{% url 'removeInOrder' orderId=order.id %}">Cancel</a>Not-Delivered</span>
+                {% elif order.orderStatusInOrder == 'C' %}
+                <div class="orderstatus1"></div><span class="status"><strike>Cancelled</strike></span>
+                {% endif %}
+                <div class="deliverAddressInOrder">To &nbsp&nbsp&nbsp&nbsp&nbsp : {{ order.deliverAddressInOrder }}&nbsp| +(91) {{ order.deliveryNumberInOrder }}</div>
+                <div class="totalAmountPaidInOrder">Paid &nbsp&nbsp: ₹ {{ order.totalAmountPaidInOrder }}</div>
+                <div class="orderPlacedTimeDate">Placed On : {{ order.orderPlacedTimeDate }}
+                    <span class="deliveryday">
+                        {% if order.orderStatusInOrder == 'N' %}
+                        ( will be delivered by {{ order.orderDeliveredDate }} )
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <div class="order-details" id="order-details-{{ order.tokiyoOrderId }}">
+                {% for orderProduct in orderProductsList %}
+                <a class="#" href="{% url 'product' prod=orderProduct.productIdInODP.id %}" value="{{ product.id }}">
+                    {% if order.id == orderProduct.orderDetailSId.id %}
+                    <div class="productNameODP">{{ orderProduct.productIdInODP.productName }}</div>
+                    <div class="productAmtQODP">{{ orderProduct.productQuantityInODP }} x ₹ {{ orderProduct.productPrizingInODP }}</div>
+                    <div class="divider"></div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="containerOrderNoProduct">
+            <div class="noProducts">No Orders Placed !!!</div>
+            <a class="viewProduct" href="{% url 'category' category=0 %}">Explore</a>
+        </div>
+        {% endif %}
+        <div class="footer">
+            {% include 'footerPage.html' %}
+        </div>
+    </div>
+</body>
+
+</html>

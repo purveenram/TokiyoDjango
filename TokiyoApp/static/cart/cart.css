@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&display=swap');
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-image: url('Wallimg2.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
+    margin: 0;
+}
+.background{
+    background-color: rgb(3, 16, 19, .6);
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.ifCartIsPresent {
+    overflow: hidden;
+}
+
+.containerCartLeft {
+    float: left;
+    text-align: center;
+    width: 70%;
+}
+
+.GridGroup {
+    border-radius: 5px;
+    background-color: rgba(20, 29, 31, 0.9);
+    margin: 1% 0% 1% 2%;
+    height: 170px;
+    display: flex;
+    align-items: center;
+}
+
+.GridGroup:hover {
+    background-color: rgba(20, 29, 31, 1);
+}
+
+.imgDiv {
+    height: 150px;
+    width: 100px;
+}
+
+img {
+    margin-left: 10px;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: .3s;
+    transition-timing-function: ease;
+}
+
+.titleDiv {
+    width: 30%;
+    font-size: large;
+    margin-left: 2%;
+}
+
+.sellingPrice {
+    width: 12%;
+    color: aliceblue;
+    font-size: large;
+    margin-left: 1%;
+}
+
+.quantity {
+    width: 20%;
+    font-size: large;
+    margin-left: 3%;
+}
+
+.qno {
+    color: red;
+}
+
+.remove {
+    margin-left: 4%;
+    color: rgba(20, 29, 31, 1);
+    background-color: rgb(240, 248, 255, .9);
+    border-radius: 5px;
+    padding: 2% 3% 2% 3%;
+}
+
+.remove:hover {
+    background-color: rgb(240, 248, 255, 1);
+    color: red;
+}
+
+.placeOrderTagRight {
+    background-color: rgba(20, 29, 31, .8);
+    color: aliceblue;
+    float: right;
+    width: 25%;
+    text-align: center;
+    margin: 1%;
+    margin-right: 3%;
+    border-radius: 5px;
+}
+
+.paymentBarPayDetails {
+    font-size: larger;
+    padding: 3% 3% 3% 3%;
+    background-color: rgba(20, 29, 31, 0.9);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.paymentBar {
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.text {
+    width: 140px;
+}
+
+.save {
+    margin-left: 5px;
+    color: red;
+}
+
+
+.placeOrder {
+    padding: 4% 3% 4% 3%;
+    background-color: rgba(20, 29, 31, 0.9);
+    border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
+}
+
+.placeOrder:hover {
+    background-color: rgba(20, 29, 31, 1);
+    color: red;
+}
+
+.containerCart {
+    height: auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+.noProducts {
+    font-weight: bolder;
+    font-size: larger;
+    margin-top: 20vh;
+    margin-bottom: 50vh;
+    color: aliceblue;
+    padding: 2% 5% 2% 5%;
+    background-color: rgba(3, 16, 19, 0.5);
+    backdrop-filter: blur(5px); 
+}
+
+.footer {
+    margin-top: 5%;
+    overflow: hidden;
+}

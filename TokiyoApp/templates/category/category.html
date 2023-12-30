@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'category/category.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+
+<body>
+    <div class="containerCategory">
+        <div class="containerCategoryGradient">
+            <div class="navbar_for_category">
+                {% if user %}
+                {% include 'navbar/navbarLogout.html' %}
+                {% else %}
+                {% include 'navbar/navbarLogin.html' %}
+                {% endif %}
+            </div>
+            <div class="displayCategory">
+                <div class="categoryTitle">{{ category }}</div>
+            </div>
+            <div class="forProduct">
+                <div class="leftSide">
+                    <div class="filterName">
+                        Filters
+                        <div class="filter"></div>
+                    </div>
+                    <div class="filterLine"></div>
+                    <div class="categoryListBorderGroup">
+                        <div class="categoryListBorder"><a class="categoryList" href="{% url 'category' category=0 %}"
+                                value="1">All PRODUCTS</a></div>
+                        <div class="categoryListBorder"><a class="categoryList" href="{% url 'category' category=1 %}"
+                                value="1">KATANA</a></div>
+                        <div class="categoryListBorder"><a class="categoryList" href="{% url 'category' category=2 %}"
+                                value="2">ACTION FIGURES</a></div>
+                        <div class="categoryListBorder"><a class="categoryList" href="{% url 'category' category=3 %}"
+                                value="3">ACCESSORIES</a></div>
+                        <div class="categoryListBorder"><a class="categoryList" href="{% url 'category' category=4 %}"
+                                value="4">POSTERS</a></div>
+                    </div>
+                </div>
+                {% if products %}
+                <div class="rightSide">
+                    <div class="containerProduct">
+                        {% for product in products %}
+                        <a href="{% url 'product' prod=product.id %}" value="{{ product.id }}">
+                            <div class="GridGroup">
+                                <div class="imgDiv"><img src="../..{{ product.productImage.url }}" alt="{{ product.productName }}"></div>
+                                <div class="titleDiv">{{ product.productName }}</div>
+                                <div class="desDiv">{{ product.productDescription }}</div>
+                                <div class="sellingPrice">₹ {{ product.productSellingPrice }}</div>
+                                <div class="productPrice"><strike>₹ {{ product.productPrice }}</strike></div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <div class="prevNext">
+                        <button class="prev">Prev</button>
+                        <button class="next">Next</button>
+                    </div>
+                </div>
+                {% else %}
+                <div class="noproductFound">
+                    No product found!
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="footerCategory">
+        {% include '../footerPage.html' %}
+    </div>
+</body>
+<script>
+    const cards = document.querySelectorAll('.GridGroup');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+
+    const cardsPerPage = 9;
+    let currentPage = 1;
+
+    function showPage(page) {
+        const startIndex = (page - 1) * cardsPerPage;
+        const endIndex = startIndex + cardsPerPage;
+
+        cards.forEach((card, index) => {
+            if (index >= startIndex && index < endIndex) {
+                card.style.display = "inline-block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+    showPage(currentPage);
+
+    prev.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    next.addEventListener("click", () => {
+        const totalPages = Math.ceil(cards.length / cardsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'cart/cart.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+
+<body>
+    <div class="background">
+        <div class="navbar_for_home">
+            {% include 'navbar/navbarLogout.html' %}
+        </div>
+        {% if orders %}
+        <div class="ifCartIsPresent">
+            <div class="containerCartLeft">
+                {% for product in orders %}
+                <a class="productOnly" href="{% url 'product' prod=product.productIdInCart.id %}"
+                    value="{{ product.productIdInCart.id }}">
+                    <div class="GridGroup">
+                        <a class="imgDiv"><img src="..{{ product.productIdInCart.productImage.url }}"
+                                alt="{{ product.productIdInCart.productName }}"></a>
+                        <a class="titleDiv">{{ product.productIdInCart.productName }}</a>
+                        <a class="quantity">₹<span class="qno">{{ product.productIdInCart.productSellingPrice }}</span>
+                            x
+                            <span class="qno">{{ product.productQuantityInCart }}</span></a>
+                        <a class="sellingPrice">₹<span class="qno">{{ product.productPrizingInCart }}</span></a>
+                        <a class="remove" href="{% url 'removeInCart' productId=product.id %}">Remove</a>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="placeOrderTagRight">
+                <div class="paymentBarPayDetails">Payment Details</div>
+                <div class="paymentDetails">
+                    <div class="paymentBar">
+                        <span class="text">Total</span>
+                        <span class="value">: ₹ {{ totalPriceOfProducts }}</span>
+                    </div>
+                    <div class="paymentBar">
+                        <span class="text">Discount</span>
+                        <span class="value">: -₹ {{ discountForTotalPrice }} <strike
+                                class="save">save10%</strike></span>
+                    </div>
+                    <div class="paymentBar">
+                        <span class="text">Shipping Cost</span>
+                        <span class="value">: Free <strike class="save">₹40</strike></span>
+                    </div>
+                    <div class="paymentBar">
+                        <span class="text">Total Amount</span>
+                        <span class="value">: ₹ {{ totalAmountToPay }}</span>
+                    </div>
+                </div>
+                <div class="placeOrder"><a href="{% url 'makePayment' %}">Make Payment</a></div>
+            </div>
+        </div>
+        {% else %}
+        <div class="containerCart">
+            <div class="noProducts">No Products In Cart!!!</div>
+        </div>
+        {% endif %}
+        <div class="footer">
+            {% include 'footerPage.html' %}
+        </div>
+    </div>
+</body>
+
+</html>

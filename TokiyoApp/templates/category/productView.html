@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'product/productView.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/logoWhite.png' %}">
+    <title>Tokiyo</title>
+</head>
+
+<body>
+    <div class="containerProduct">
+        <div class="containerProductGradient">
+            <div class="navbar_for_category">
+                {% if user %}
+                {% include 'navbar/navbarLogout.html' %}
+                {% else %}
+                {% include 'navbar/navbarLogin.html' %}
+                {% endif %}
+            </div>
+            <div class="productViewSlide">
+                <div class="leftProductViewSlide">
+                    {% for productImage in productImages %}
+                    <div class="imgDiv"><img class="images" src="../..{{ productImage.image.url }}"
+                            alt="{{ productImage.product }}"></div>
+                    {% endfor %}
+                    <div class="prevNext">
+                        <button class="prev">◄</button>
+                        <button class="next">▶</button>
+                    </div>
+                </div>
+                <div class="rightProductViewSlide">
+                    <div class="titleDiv">
+                        <h1>{{ product.productName }}</h1>
+                    </div>
+                    <div class="titDesDiv"></div>
+                    <div class="desDiv">{{ product.productDescription }}</div>
+                    <div class="productPrice"><strike>₹ {{ product.productPrice }}</strike></div>
+                    <div class="sellingPrice">₹ {{ product.productSellingPrice }}</div>
+                    <form action="{% url 'addInCart' prod=product.id %}" method="POST" value="{{ product.id }}"" >
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ user.id }}" name="customerIdInCart" id="{{ form.user.id_for_id }}">
+                        <input type="hidden" value="{{ product.id}}" name="productIdInCart" id="{{ form.product.id_for_id }}">
+
+                        <div class="productQuantity">Quantity<input class="productQuantityInput" type="number" value="1" name="productQuantityInCart" id="{{ form.productQuantity.id_for_id }}" min="1"></div>
+                        <div class="btn">
+                            <button type="submit" name="buttonAdd" value="addCart" class="cartBtn">Cart</button>
+                            <button type="submit" name="buttonAdd" value="addBuy" class="buyBtn">Buy</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="suggestionTitle">
+                <h2>Products that you might like</h2>
+            </div>
+            <div class="suggestionProducts">
+                <button class="suggestBtnLeft">◄</button>
+                {% for prod in products %}
+                {% if prod.id != product.id %}
+                <a class="#" href="{% url 'product' prod=prod.id %}" value="{{ prod.id }}">
+                    <div class="suggestGridGroup">
+                        <div class="suggestImgDiv"><img class="suggestImages" src="../..{{ prod.productImage.url }}"
+                                alt="{{ prod.productName }}"></div>
+                        <div class="suggestTitleDiv">{{ prod.productName }}</div>
+                    </div>
+                </a>
+                {% endif %}
+                {% endfor %}
+                <button class="suggestBtnRight">▶</button>
+            </div>
+        </div>
+        <div class="footerProduct">
+            {% include '../footerPage.html' %}
+        </div>
+    </div>
+</body>
+<script>
+    // for images slide
+    const cards = document.querySelectorAll('.imgDiv');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+
+    const cardsPerPage = 1;
+    let currentPage = 1;
+
+    function showPage(page) {
+        const startIndex = (page - 1) * cardsPerPage;
+        const endIndex = startIndex + cardsPerPage;
+
+        cards.forEach((card, index) => {
+            if (index >= startIndex && index < endIndex) {
+                card.style.display = "inline-block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+    showPage(currentPage);
+
+    prev.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    next.addEventListener("click", () => {
+        const totalPages = Math.ceil(cards.length / cardsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+    // for suggestion bar
+    const suggestCards = document.querySelectorAll('.suggestGridGroup');
+    const suggestPrev = document.querySelector('.suggestBtnLeft');
+    const suggestNext = document.querySelector('.suggestBtnRight');
+
+    const suggestCardsPerPage = 4;
+    let suggestCurrentPage = 1;
+
+    function suggestShowPage(suggestPage) {
+        const suggestStartIndex = (suggestPage - 1) * suggestCardsPerPage;
+        const suggestEndIndex = suggestStartIndex + suggestCardsPerPage;
+
+        suggestCards.forEach((card, index) => {
+            if (index >= suggestStartIndex && index < suggestEndIndex) {
+                card.style.display = "inline-block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+    suggestShowPage(suggestCurrentPage);
+
+    suggestPrev.addEventListener("click", () => {
+        if (suggestCurrentPage > 1) {
+            suggestCurrentPage--;
+            suggestShowPage(suggestCurrentPage);
+        } suggestShowPage
+    });
+
+    suggestNext.addEventListener("click", () => {
+        const totalPages = Math.ceil(suggestCards.length / suggestCardsPerPage);
+        if (suggestCurrentPage < totalPages) {
+            suggestCurrentPage++;
+            suggestShowPage(suggestCurrentPage);
+        }
+    });
+</script>
+
+</html>
